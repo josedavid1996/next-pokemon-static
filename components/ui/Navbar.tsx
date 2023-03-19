@@ -23,23 +23,23 @@ const Navbar = () => {
         width={70}
         height={70}
       />
-      <NextLink href="/" passHref>
-        <Link>
-          <Text color="white" h2>
-            P
-          </Text>
-          <Text color="white" h3>
-            okemón
-          </Text>
-        </Link>
+      <NextLink href="/" passHref className="link">
+        {/* <Link> */}
+        <Text color="white" h2>
+          P
+        </Text>
+        <Text color="white" h3>
+          okemón
+        </Text>
+        {/* </Link> */}
       </NextLink>
 
       <Spacer css={{ flex: 1 }} />
 
       <NextLink href="/favorite" passHref>
-        <Link>
-          <Text color="white">Favoritos</Text>
-        </Link>
+        {/* <Linsk> */}
+        <Text color="white">Favoritos</Text>
+        {/* </Link> */}
       </NextLink>
     </div>
   )
