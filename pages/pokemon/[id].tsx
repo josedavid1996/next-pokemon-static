@@ -9,7 +9,7 @@ import Layout from '../../components/layout/Layout'
 import pokeApi from '../../api/pokeApi'
 import { Pokemon } from '../../interface'
 import Image from 'next/image'
-import { localFavorite } from '../../utils'
+import { getPokemonInfo, localFavorite } from '../../utils'
 
 interface Props {
   pokemon: Pokemon
@@ -121,11 +121,10 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params as { id: string }
-  const { data } = await pokeApi.get<Pokemon>(`/pokemon/${id}`)
 
   return {
     props: {
-      pokemon: data
+      pokemon: await getPokemonInfo(id)
     }
   }
 }

@@ -8,7 +8,7 @@ import confetti from 'canvas-confetti'
 import { pokeApi } from '../../api'
 import { Pokemon, PokemonListResponse } from '../../interface'
 import localFavorites from '../../utils/localFavorites'
-import { localFavorite } from '../../utils'
+import { getPokemonInfo, localFavorite } from '../../utils'
 import Image from 'next/image'
 
 import Layout from '../../components/layout/Layout'
@@ -18,6 +18,7 @@ interface Props {
 }
 
 const PokemonByNamePage: NextPage<Props> = ({ pokemon }) => {
+  console.log(pokemon)
   const [isInFavorite, setIsInFavorite] = useState(
     localFavorite.existInFavorite(pokemon.id)
   )
@@ -130,11 +131,11 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
   }
 }
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const pokemon = ctx.params?.name
-  const { data } = await pokeApi.get<Pokemon>(`/pokemon/${pokemon}`)
+  const { name } = ctx.params as { name: string }
+
   return {
     props: {
-      pokemon: data
+      pokemon: await getPokemonInfo(name)
     }
   }
 }
