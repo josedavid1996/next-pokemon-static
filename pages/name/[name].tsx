@@ -18,7 +18,6 @@ interface Props {
 }
 
 const PokemonByNamePage: NextPage<Props> = ({ pokemon }) => {
-  console.log(pokemon)
   const [isInFavorite, setIsInFavorite] = useState(
     localFavorite.existInFavorite(pokemon.id)
   )
